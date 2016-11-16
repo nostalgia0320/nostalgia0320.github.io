@@ -87,4 +87,54 @@ var GuoJunChao = {
 		return result
 	},
 
+	fill: function(arr, value, start, end) {
+		if (start == undefined) {
+			start = 0
+		}
+		if (end == undefined) {
+			end = arr.length
+		}
+		for (i = start; i < end; i++) {
+			arr[i] = value
+		}
+		return arr
+	},
+
+	flatten: function(arr, isDeep) {
+		var result = []
+		if (isDeep == undefined) {
+			for (i = 0; i < arr.length; i++) {
+				if (typeof arr[i] == 'object') {
+					for (j = 0; j < arr[i].length; j++) {
+						result.push(arr[i][j])
+					}
+				} else {
+					result.push(arr[i])
+				}
+			}
+			return result
+		} else {
+			function deep(arr) {
+				for (i = 0; i < arr.length; i++) {
+					if (typeof arr[i] == 'object') {
+						for (j = 0; j < arr[i].length; j++) {
+							result.push(arr[i][j])
+							if (typeof arr[i][j] == 'object') {
+								var x = 1
+							}
+						}
+					} else {
+						result.push(arr[i])
+					}
+				}
+				if (x = 1) {
+					deep(result)
+				}
+				return result
+			}
+		}
+
+	},
+
+
 }
