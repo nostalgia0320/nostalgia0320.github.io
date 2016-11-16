@@ -65,4 +65,26 @@ var GuoJunChao = {
 		return result
 	},
 
+	drop: function(arr, n) {
+		if (n == undefined) {
+			n = 1
+		}
+		var result = []
+		for (i = n; i < arr.length; i++) {
+			result.push(arr[i])
+		}
+		return result
+	},
+
+	dropRight: function(arr, n) {
+		if (n == undefined) {
+			n = 1
+		}
+		var result = []
+		for (i = 0; i < arr.length - n; i++) {
+			result.push(arr[i])
+		}
+		return result
+	},
+
 }
