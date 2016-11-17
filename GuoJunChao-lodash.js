@@ -106,27 +106,39 @@ var GuoJunChao = {
 			return GuoJunChao.flattenDeep(arr);
 		} else {
 			for (var i = 0; i < arr.length; i++) {
-				newarr.push(arr[i]);
+				if ((arr[i].length !== undefined) && (typeof(arr[i]) === 'object')) {
+					for (var j = 0; j < arr[i].length; j++) {
+						newarr.push(arr[i][j]);
+					}
+				} else {
+					newarr.push(arr[i]);
+				}
 			}
 		}
 		return newarr;
 	},
 
 
+
 	flattenDeep: function(arr) {
-		var result = [];
+		var newarr = [];
+		var juc = false;
 		for (var i = 0; i < arr.length; i++) {
-			if (arr[i][0] === undefined) {
-				result.push(arr[i]);
+			if ((arr[i].length === undefined) && (typeof(arr[i]) !== 'object')) {
+				newarr.push(arr[i]);
 			} else {
 				for (var j = 0; j < arr[i].length; j++) {
-					result.push(arr[i][j]);
+					newarr.push(arr[i][j]);
+					juc = true;
 				}
-				return GuoJunChao.flattenDeep(result);
 			}
 		}
-		return result;
+		if (juc) {
+			return GuoJunChao.flattenDeep(newarr);
+		}
+		return newarr;
 	},
+
 
 	fromPairs: function(arr) {
 		var result = {}
@@ -163,8 +175,8 @@ var GuoJunChao = {
 		return GuoJunChao.difference(result, result_r)
 	},
 
-	// pull: function(arr,value) {
-	// 	var 
+	// pull: function(arr, value) {
+	// 	var
 	// }
 
 
