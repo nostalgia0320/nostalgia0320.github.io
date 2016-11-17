@@ -199,7 +199,11 @@ var GuoJunChao = {
 			tem.push(arr[index[i] - 1])
 		}
 		return GuoJunChao.difference(arr, tem)
-	}
+	},
+
+	reverse: function(arr) {
+		return arr.reverse()
+	},
 
 
 
