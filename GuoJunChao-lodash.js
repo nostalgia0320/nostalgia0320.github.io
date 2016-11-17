@@ -56,7 +56,9 @@ var GuoJunChao = {
 	difference: function(arr_1, arr_2) {
 		var str_1 = arr_1.join('')
 		for (i = 0; i < arr_2.length; i++) {
-			str_1 = str_1.replace(arr_2[i], "")
+			while (str_1.indexOf(arr_2[i]) != -1) {
+				str_1 = str_1.replace(arr_2[i], "")
+			}
 		}
 		var result = str_1.split('')
 		for (j = 0; j < result.length; j++) {
@@ -175,9 +177,14 @@ var GuoJunChao = {
 		return GuoJunChao.difference(result, result_r)
 	},
 
-	// pull: function(arr, value) {
-	// 	var
-	// }
+	pull: function(arr, value) {
+		var tem = []
+		for (i = 1; i < arguments.length; i++) {
+			tem.push(arguments[i])
+		}
+		var x = GuoJunChao.difference(arr, tem)
+		return x
+	},
 
 
 
