@@ -205,6 +205,21 @@ var GuoJunChao = {
 		return arr.reverse()
 	},
 
+	split: function(str, sep, lim) {
+		while (str.indexOf(sep) != -1) {
+			str = str.replace(sep, "")
+		}
+		var arr = str.split("")
+		var result = []
+		for (i = 0; i < lim; i++) {
+			result.push(arr[i])
+		}
+		return result
+
+
+
+	},
+
 
 
 }
