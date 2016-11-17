@@ -62,7 +62,9 @@ var GuoJunChao = {
 		}
 		var result = str_1.split('')
 		for (j = 0; j < result.length; j++) {
-			result[j] = +result[j]
+			if (result[j].search(/[0-9]/) != -1) {
+				result[j] = +result[j]
+			}
 		}
 		return result
 	},
