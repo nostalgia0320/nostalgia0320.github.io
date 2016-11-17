@@ -220,6 +220,55 @@ var GuoJunChao = {
 
 	},
 
+	tail: function(arr) {
+		var result = []
+		for (i = 1; i < arr.length; i++) {
+			result.push(arr[i])
+		}
+		return result
+	},
+
+	take: function(arr, n) {
+		if (n == undefined) {
+			n = 1
+		}
+		var result = []
+		for (i = 0; i < n && i < arr.length; i++) {
+			result.push(arr[i])
+		}
+		return result
+	},
+
+	takeRight: function(arr, n) {
+		var arr_1 = arr.reverse()
+		return GuoJunChao.take(arr_1, n).reverse()
+
+	},
+
+	union: function() {
+		var result = []
+		for (i = 0; i < arguments.length; i++) {
+			for (j = 0; j < arguments[i].length; j++) {
+				if (result.indexOf(arguments[i][j]) == -1) {
+					result.push(arguments[i][j])
+				}
+			}
+		}
+		return result
+	},
+
+	uniq: function(arr) {
+		var result = []
+
+		for (i = 0; i < arr.length; i++) {
+			if (result.indexOf(arr[i]) == -1) {
+				result.push(arr[i])
+			}
+
+		}
+		return result
+	},
+
 
 
 }
