@@ -188,6 +188,11 @@ var GuoJunChao = {
 		return x
 	},
 
+	pullAll: function(arr, value) {
+		var x = GuoJunChao.difference(arr, tem)
+		return x
+	},
+
 
 
 }
