@@ -2,7 +2,7 @@
  *
  */
 
-
+// debugger;
 
 var GuoJunChao = {
 	chunk: function(arr, n) {
@@ -101,40 +101,72 @@ var GuoJunChao = {
 	},
 
 	flatten: function(arr, isDeep) {
-		var result = []
-		if (isDeep == undefined) {
-			for (i = 0; i < arr.length; i++) {
-				if (typeof arr[i] == 'object') {
-					for (j = 0; j < arr[i].length; j++) {
-						result.push(arr[i][j])
-					}
-				} else {
-					result.push(arr[i])
-				}
-			}
-			return result
+		var newarr = [];
+		if (isDeep === true) {
+			return GuoJunChao.flattenDeep(arr);
 		} else {
-			function deep(arr) {
-				for (i = 0; i < arr.length; i++) {
-					if (typeof arr[i] == 'object') {
-						for (j = 0; j < arr[i].length; j++) {
-							result.push(arr[i][j])
-							if (typeof arr[i][j] == 'object') {
-								var x = 1
-							}
-						}
-					} else {
-						result.push(arr[i])
-					}
-				}
-				if (x = 1) {
-					deep(result)
-				}
-				return result
+			for (var i = 0; i < arr.length; i++) {
+				newarr.push(arr[i]);
 			}
 		}
-
+		return newarr;
 	},
+
+
+	flattenDeep: function(arr) {
+		var result = [];
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i][0] === undefined) {
+				result.push(arr[i]);
+			} else {
+				for (var j = 0; j < arr[i].length; j++) {
+					result.push(arr[i][j]);
+				}
+				return GuoJunChao.flattenDeep(result);
+			}
+		}
+		return result;
+	},
+
+	fromPairs: function(arr) {
+		var result = {}
+		for (i = 0; i < arr.length; i++) {
+			result[arr[i][0]] = arr[i][1]
+		}
+		return result
+	},
+
+	initial: function(arr) {
+		arr.pop()
+		return arr
+	},
+
+	intersection: function() {
+		var result = []
+		var result_r = []
+		for (i = 0; i < arguments[0].length; i++) {
+			for (j = 0; j < arguments[1].length; j++) {
+				if (arguments[0][i] == arguments[1][j]) {
+					if (result.indexOf(arguments[0][i]) == -1) {
+						result.push(arguments[0][i])
+					}
+				}
+			}
+		}
+		for (i = 0; i < result.length; i++) {
+			for (j = 2; j < arguments.length; j++) {
+				if (arguments[j].indexOf(result[i]) == -1) {
+					result_r.push(result[i])
+				}
+			}
+		}
+		return GuoJunChao.difference(result, result_r)
+	},
+
+	// pull: function(arr,value) {
+	// 	var 
+	// }
+
 
 
 }
