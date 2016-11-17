@@ -269,6 +269,37 @@ var GuoJunChao = {
 		return result
 	},
 
+	unzip: function() {
+		var result = []
+		for (i = 0, j = 0; i < arguments[i].length; i++) {
+			result[i] = []
+			for (j = 0; j < arguments.length; j++) {
+				result[i][j] = arguments[j][i]
+			}
+		}
+		return result
+	},
+
+	zip: function() {
+		var result = []
+		for (i = 0, j = 0; i < arguments[i].length; i++) {
+			result[i] = []
+			for (j = 0; j < arguments.length; j++) {
+				result[i][j] = arguments[j][i]
+			}
+		}
+		return result
+	},
+
+	without: function(arr, value) {
+		var tem = []
+		var tem_1 = []
+		for (i = 1; i < arguments.length; i++) {
+			tem.push(arguments[i])
+		}
+		return GuoJunChao.difference(arr, tem)
+	},
+
 
 
 }
