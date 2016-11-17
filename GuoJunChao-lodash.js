@@ -189,9 +189,13 @@ var GuoJunChao = {
 	},
 
 	pullAll: function(arr, value) {
-		var x = GuoJunChao.difference(arr, tem)
+		var x = GuoJunChao.difference(arr, value)
 		return x
 	},
+
+	// pullAt: function(arr, index) {
+
+	// }
 
 
 
