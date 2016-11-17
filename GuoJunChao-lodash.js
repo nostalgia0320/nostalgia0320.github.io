@@ -269,16 +269,16 @@ var GuoJunChao = {
 		return result
 	},
 
-	unzip: function() {
-		var result = []
-		for (i = 0, j = 0; i < arguments[i].length; i++) {
-			result[i] = []
-			for (j = 0; j < arguments.length; j++) {
-				result[i][j] = arguments[j][i]
-			}
-		}
-		return result
-	},
+	// unzip: function() {
+	// 	var result = []
+	// 	for (i = 0, j = 0; i < arguments[i].length; i++) {
+	// 		result[i] = []
+	// 		for (j = 0; j < arguments.length; j++) {
+	// 			result[i][j] = arguments[j][i]
+	// 		}
+	// 	}
+	// 	return result
+	// },
 
 	zip: function() {
 		var result = []
@@ -300,6 +300,18 @@ var GuoJunChao = {
 		return GuoJunChao.difference(arr, tem)
 	},
 
-
+	xor: function() {
+		var tem = []
+		for (i = 0; i < arguments.length; i++) {
+			for (j = 0; j < arguments[i].length; j++) {
+				if (tem.indexOf(arguments[i][j]) == -1) {
+					tem.push(arguments[i][j])
+				} else {
+					tem.splice(tem.indexOf(arguments[i][j]), 1)
+				}
+			}
+		}
+		return tem
+	}
 
 }
