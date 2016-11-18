@@ -322,12 +322,50 @@ var GuoJunChao = {
 			return coll
 		} else {
 			for (var s in coll) {
-				coll[s] = ite(coll[s])
+				coll[s] = ite(coll[s], s, coll)
 			}
 			return coll
 		}
 
 
+	},
+
+	filter: function(coll, ite) {
+		if (typeof coll.length == 'number') {
+			var arr = []
+			for (i = 0; i < coll.length; i++) {
+				if (ite(coll[i], i, coll)) {
+					arr.push(coll[i])
+				}
+			}
+			return arr
+		} else {
+			var result = {}
+			for (var s in coll) {
+				if (ite(coll[s], s, coll)) {
+					var name = s
+					var value = coll[s]
+					result[name] = coll[s]
+				}
+			}
+			return result
+		}
+
+	},
+
+	partition: function(coll, ite) {
+		var result = [
+			[],
+			[]
+		]
+		for (var i in coll) {
+			if (ite(coll[i])) {
+				result[0].push(coll[i])
+			} else {
+				result[1].push(coll[i])
+			}
+		}
+		return result
 	},
 
 }
