@@ -381,4 +381,58 @@ var GuoJunChao = {
 		return true
 	},
 
+	indexOf: function(arr, value, fromIndex) {
+		var result = []
+		if (fromIndex == undefined) {
+			fromIndex = 0
+		}
+		for (i = fromIndex; i < arr.length; i++) {
+			result.push(arr[i])
+		}
+		return result.indexOf(value) + fromIndex
+	},
+
+	nth: function(arr, n) {
+		if (n == undefined) {
+			n = 0
+		}
+		if (n >= 0) {
+			return arr[n]
+		} else {
+			return arr.reverse()[-n - 1]
+		}
+	},
+
+	join: function(arr, sep) {
+		return arr.join(sep)
+	},
+
+	last: function(arr) {
+		return arr[arr.length - 1]
+	},
+
+	lastIndexOf: function(arr, value, fromIndex) {
+		return arr.length - 1 - GuoJunChao.indexOf(arr.reverse(), value, fromIndex)
+	},
+
+	sortedIndex: function(arr, value) {
+		if (value <= arr[0]) {
+			return 0
+		}
+		if (value >= arr[arr.length - 1]) {
+			return arr.length
+		}
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i] <= value && arr[i + 1] >= value) {
+				return i + 1
+			}
+		}
+		if (value < arr[0]) {
+			return 0
+		}
+		if (value > arr[arr.length - 1]) {
+			return arr.length
+		}
+	}
+
 }
