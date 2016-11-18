@@ -582,43 +582,7 @@ var GuoJunChao = {
 	},
 
 	kebabCase: function(str) {
-		var result = ''
-		var start = 0
-		var stop = 0
-		var x = 0
-		for (i = 0; i < str.length - 1; i++) {
-			if (str[i].search(/[a-z]/) == -1 && str[i + 1].search(/[a-z]/) != -1) {
-				if (str[i].search(/[A-Z]/) != -1) {
-					start = i
-				} else {
-					start = i + 1
-				}
-			}
-			if (str[i + 1].search(/[a-z]/) == -1 && str[i].search(/[a-z]/) != -1) {
-				stop = i + 1
-				x++
-			}
-			if (stop > start) {
-				if (x > 1) {
-					result = result + '-'
-				}
-				result = result + str.toLowerCase().slice(start, stop)
-				start = 0
-				stop = 0
-			}
-		}
-		if (start != 0) {
-			stop = str.length
-			x++
-			if (x > 1) {
-				result = result + '-'
-			}
-			result = result + str.toLowerCase().slice(start, stop)
-		}
-		if (x == 0 && start == 0 && stop == 0) {
-			return str
-		}
-		return result
+		return GuoJunChao.lowerCase(str).replace(' ', '-')
 	},
 
 	lowerCase: function(str) {
