@@ -315,10 +315,19 @@ var GuoJunChao = {
 	},
 
 	map: function(coll, ite) {
-		for (i = 0; i < coll.length; i++) {
-			coll[i] = ite(coll[i])
+		if (typeof coll.length == 'number') {
+			for (i = 0; i < coll.length; i++) {
+				coll[i] = ite(coll[i], i, coll)
+			}
+			return coll
+		} else {
+			for (var s in coll) {
+				coll[s] = ite(coll[s])
+			}
+			return coll
 		}
-		return coll
+
+
 	},
 
 }
