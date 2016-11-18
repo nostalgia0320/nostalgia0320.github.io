@@ -782,6 +782,34 @@ var GuoJunChao = {
 		return result
 	},
 
+	ceil: function(num, p) {
+		if (p == undefined) {
+			return Math.ceil(num)
+		}
+		if (p > 0) {
+			for (i = 0; i < p; i++) {
+				num *= 10
+			}
+		} else {
+			for (i = 0; i > p; i--) {
+				num /= 10
+			}
+		}
+
+		num = Math.ceil(num)
+
+		if (p > 0) {
+			for (i = 0; i < p; i++) {
+				num /= 10
+			}
+		} else {
+			for (i = 0; i > p; i--) {
+				num *= 10
+			}
+		}
+		return num
+	},
+
 
 
 }
