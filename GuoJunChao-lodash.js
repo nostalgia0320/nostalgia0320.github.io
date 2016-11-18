@@ -653,7 +653,7 @@ var GuoJunChao = {
 			str = str + char
 		}
 
-		if (str.length > len) {
+		if (str.length >= len) {
 			return str.slice(0, len)
 		}
 	},
@@ -715,11 +715,13 @@ var GuoJunChao = {
 		for (i = 1; i < str.length; i++) {
 			if (str[i] == ' ') {
 				result = result + str.slice(start, i + 1)
-				str[i + 1] = str[i + 1].toUpperCase()
-				start = i + 1
+				result = result + str[i + 1].toUpperCase()
+				start = i + 2
 			}
 		}
 		return result + str.slice(start, str.length)
 	},
+
+
 
 }
