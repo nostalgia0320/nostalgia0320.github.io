@@ -688,14 +688,23 @@ var GuoJunChao = {
 	},
 
 	repeat: function(str, n) {
-		var result = []
 		if (n == undefined) {
 			n = 0
 		}
-		for (i = 0; i < n; i++) {
-			result = result + str
+		if (typeof str == 'object') {
+			var result = []
+			for (i = 0; i < n; i++) {
+				result = result + str
+			}
+			return result
+		} else {
+			var result = ''
+			for (i = 0; i < n; i++) {
+				result = result + str
+			}
+			return result
 		}
-		return result
+
 	},
 
 	replace: function(str, pat, rep) {
@@ -720,6 +729,57 @@ var GuoJunChao = {
 			}
 		}
 		return result + str.slice(start, str.length)
+	},
+
+	includes: function(coll, val, n) {
+		if (n == undefined) {
+			n = 0
+		}
+		if (typeof coll == 'object') {
+			for (i = n; i < coll.length; i++) {
+				if (coll[n] == val) {
+					return true
+				}
+			}
+			return false
+		} else {
+			coll = coll.slice(n, coll.length)
+			return coll.indexOf(val) != -1
+		}
+
+	},
+
+	groupBy: function(coll, ite) {
+		var result = {}
+		for (i = 0; i < coll.length; i++) {
+			if (result[ite(coll[i])] == undefined) {
+				result[ite(coll[i])] = []
+			}
+			result[ite(coll[i])] = result[ite(coll[i])].concat(coll[i])
+		}
+		return result
+	},
+
+	keyBy: function(coll, ite) {
+
+	},
+
+	has: function(obj, path) {
+
+	},
+
+
+
+	invert: function(coll, n) {
+		var result = {}
+		for (var s in coll) {
+
+			var name = s
+			var value = coll[s]
+			result[coll[s]] = name
+
+		}
+		return result
 	},
 
 
