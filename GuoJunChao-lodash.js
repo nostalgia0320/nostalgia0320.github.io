@@ -368,4 +368,17 @@ var GuoJunChao = {
 		return result
 	},
 
+	head: function(arr) {
+		return arr[0]
+	},
+
+	every: function(coll, ite) {
+		for (i = 0; i < coll.length; i++) {
+			if (!ite(coll[i])) {
+				return false
+			}
+		}
+		return true
+	},
+
 }
