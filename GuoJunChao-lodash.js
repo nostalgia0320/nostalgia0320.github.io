@@ -427,12 +427,106 @@ var GuoJunChao = {
 				return i + 1
 			}
 		}
-		if (value < arr[0]) {
-			return 0
+
+	},
+
+	some: function(coll, ite) {
+		for (i = 0; i < coll.length; i++) {
+			if (ite(coll[i])) {
+				return true
+			}
 		}
-		if (value > arr[arr.length - 1]) {
-			return arr.length
+		return false
+	},
+
+	reduce: function(coll, ite, acc) {
+		var result = acc
+		var i = 0
+		for (var s in coll) {
+			i++
+			if (i >= 2 && acc == undefined) {
+				if (i == 2) {
+					result = coll[0]
+				}
+				result = ite(result, coll[s])
+
+			}
+			if (i >= 1 && acc != undefined) {
+				result = ite(result, coll[s])
+
+			}
 		}
-	}
+		return result
+	},
+
+	camelCase: function(str) {
+		var result = ''
+		var start = 0
+		var stop = 0
+		var x = 0
+		for (i = 0; i < str.length - 1; i++) {
+			if (str[i].search(/[a-z]/) == -1 && str[i].search(/[A-Z]/) == -1 && (str[i + 1].search(/[A-Z]/) != -1 || str[i + 1].search(/[a-z]/) != -1)) {
+				start = i + 1
+			}
+			if (str[i + 1].search(/[a-z]/) == -1 && str[i + 1].search(/[A-Z]/) == -1 && (str[i].search(/[A-Z]/) != -1 || str[i].search(/[a-z]/) != -1)) {
+				stop = i + 1
+				x++
+			}
+			if (start != 0 && stop == 0) {}
+			if (stop > start) {
+				if (x == 1) {
+					result = result + str.toLowerCase().slice(start, start + 1)
+				} else if (x > 1) {
+					result = result + str.toUpperCase().slice(start, start + 1)
+				}
+				result = result + str.toLowerCase().slice(start + 1, stop)
+				start = 0
+				stop = 0
+			}
+		}
+		if (start != 0) {
+			stop = str.length
+			x++
+			if (x == 1) {
+				result = result + str.toLowerCase().slice(start, start + 1)
+			} else if (x > 1) {
+				result = result + str.toUpperCase().slice(start, start + 1)
+			}
+			result = result + str.toLowerCase().slice(start + 1, stop)
+		}
+		return result
+	},
+
+	reject: function(coll, ite) {
+		if (typeof coll.length == 'number') {
+			var arr = []
+			for (i = 0; i < coll.length; i++) {
+				if (!ite(coll[i], i, coll)) {
+					arr.push(coll[i])
+				}
+			}
+			return arr
+		} else {
+			var result = {}
+			for (var s in coll) {
+				if (!ite(coll[s], s, coll)) {
+					var name = s
+					var value = coll[s]
+					result[name] = coll[s]
+				}
+			}
+			return result
+		}
+
+	},
+
+	at: function(coll, path) {
+		var result = []
+		for (i = 1; i < arguments.length; i++) {
+			result.push(coll[arguments[i]])
+		}
+		return result
+
+	},
 
 }
