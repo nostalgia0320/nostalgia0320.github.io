@@ -312,6 +312,13 @@ var GuoJunChao = {
 			}
 		}
 		return tem
-	}
+	},
+
+	map: function(coll, ite) {
+		for (i = 0; i < coll.length; i++) {
+			coll[i] = ite(coll[i])
+		}
+		return coll
+	},
 
 }
