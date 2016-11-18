@@ -472,7 +472,6 @@ var GuoJunChao = {
 				stop = i + 1
 				x++
 			}
-			if (start != 0 && stop == 0) {}
 			if (stop > start) {
 				if (x == 1) {
 					result = result + str.toLowerCase().slice(start, start + 1)
@@ -493,6 +492,9 @@ var GuoJunChao = {
 				result = result + str.toUpperCase().slice(start, start + 1)
 			}
 			result = result + str.toLowerCase().slice(start + 1, stop)
+		}
+		if (x == 0 && start == 0 && stop == 0) {
+			return str
 		}
 		return result
 	},
@@ -527,6 +529,197 @@ var GuoJunChao = {
 		}
 		return result
 
+	},
+
+	capitalize: function(str) {
+		return str.toUpperCase().slice(0, 1) + str.toLowerCase().slice(1, str.length)
+	},
+
+	endsWith: function(str, tar, pos) {
+		if (pos == undefined) {
+			pos = str.length
+		}
+		return str[pos - 1] == tar
+	},
+
+	escape: function(str) {
+		var result = ''
+		for (i = 0; i < str.length; i++) {
+			switch (str[i]) {
+				case "&":
+					result = result + '&amp;'
+					break
+				case "<":
+					result = result + '&lt;'
+					break
+				case ">":
+					result = result + '&gt;'
+					break
+				case "\"":
+					result = result + '&quot;'
+					break
+				case "\'":
+					result = result + '&apos;'
+					break
+				default:
+					result = result + str[i]
+					break
+			}
+		}
+		return result
+	},
+
+	escapeRegExp: function(str) {
+		var result = ''
+		for (i = 0; i < str.length; i++) {
+			if (str[i] == "^" || str[i] == "$" || str[i] == "" || str[i] == "." || str[i] == "*" || str[i] == "+" || str[i] == "?" || str[i] == "(" || str[i] == ")" || str[i] == "[" || str[i] == "]" || str[i] == "{" || str[i] == "}" || str[i] == "|") {
+				result = result + '\\' + str[i]
+			} else {
+				result = result + str[i]
+			}
+		}
+		return result
+	},
+
+	kebabCase: function(str) {
+		var result = ''
+		var start = 0
+		var stop = 0
+		var x = 0
+		for (i = 0; i < str.length - 1; i++) {
+			if (str[i].search(/[a-z]/) == -1 && str[i + 1].search(/[a-z]/) != -1) {
+				if (str[i].search(/[A-Z]/) != -1) {
+					start = i
+				} else {
+					start = i + 1
+				}
+			}
+			if (str[i + 1].search(/[a-z]/) == -1 && str[i].search(/[a-z]/) != -1) {
+				stop = i + 1
+				x++
+			}
+			if (stop > start) {
+				if (x > 1) {
+					result = result + '-'
+				}
+				result = result + str.toLowerCase().slice(start, stop)
+				start = 0
+				stop = 0
+			}
+		}
+		if (start != 0) {
+			stop = str.length
+			x++
+			if (x > 1) {
+				result = result + '-'
+			}
+			result = result + str.toLowerCase().slice(start, stop)
+		}
+		if (x == 0 && start == 0 && stop == 0) {
+			return str
+		}
+		return result
+	},
+
+	lowerCase: function(str) {
+		var res = ''
+		res = GuoJunChao.camelCase(str)
+		var result = ''
+		var start = 0
+		for (i = 0; i < res.length; i++) {
+			if (res[i].search(/[A-Z]/) != -1) {
+				result = result + res.slice(start, i) + ' ' + res.slice(i, i + 1).toLowerCase()
+				start = i + 1
+			}
+		}
+		result = result + res.slice(start, str.length)
+		return result
+	},
+
+	lowerFirst: function(str) {
+		return str.slice(0, 1).toLowerCase() + str.slice(1, str.length)
+	},
+
+	pad: function(str, len, char) {
+		if (char == undefined) {
+			char = ' '
+		}
+		var x = char.length
+		var y = len - str.length
+		for (i = 0; i < y - 2 * x; i += (2 * x)) {
+			str = char + str + char
+		}
+		if (str.length < len) {
+			str = str + char
+		}
+
+		if (str.length > len) {
+			return str.slice(0, len)
+		}
+	},
+
+	padEnd: function(str, len, char) {
+		if (char == undefined) {
+			char = ' '
+		}
+		while (str.length < len) {
+			str = str + char
+		}
+		return str.slice(0, len)
+
+	},
+
+	padStart: function(str, len, char) {
+		var x = str.length
+		if (char == undefined) {
+			char = ' '
+		}
+		while (str.length < len) {
+			str = char + str
+		}
+		var y = str.length - x
+		var z = str.length - len
+		return str.slice(0, y - z) + str.slice(str.length - x, str.length)
+
+	},
+
+	parseInt: function(str) {
+		return parseInt(+str)
+	},
+
+	repeat: function(str, n) {
+		var result = []
+		if (n == undefined) {
+			n = 0
+		}
+		for (i = 0; i < n; i++) {
+			result = result + str
+		}
+		return result
+	},
+
+	replace: function(str, pat, rep) {
+		return str.replace(pat, rep)
+	},
+
+	snakeCase: function(str) {
+		str = GuoJunChao.lowerCase(str)
+		return str.replace(' ', '_')
+	},
+
+	startCase: function(str) {
+		str = GuoJunChao.lowerCase(str)
+		var result = ''
+		var start = 1
+		result = result + str[0].toUpperCase()
+		for (i = 1; i < str.length; i++) {
+			if (str[i] == ' ') {
+				result = result + str.slice(start, i + 1)
+				str[i + 1] = str[i + 1].toUpperCase()
+				start = i + 1
+			}
+		}
+		return result + str.slice(start, str.length)
 	},
 
 }
