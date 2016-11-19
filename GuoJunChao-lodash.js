@@ -694,7 +694,11 @@ var GuoJunChao = {
 				x++
 			}
 			if (stop > start) {
-				result = result + str.toUpperCase().slice(start, start + 1) + str.slice(start + 1, stop)
+				if (x > 1) {
+					result = result + ' ' + str.toUpperCase().slice(start, start + 1) + str.slice(start + 1, stop)
+				} else {
+					result = result + str.toUpperCase().slice(start, start + 1) + str.slice(start + 1, stop)
+				}
 				start = 0
 				stop = 0
 			}
@@ -715,7 +719,7 @@ var GuoJunChao = {
 				start = i
 			}
 		}
-		return res + result.slice(start, result.length)
+		return (res + result.slice(start, result.length)).replace('  ', ' ')
 	},
 
 	includes: function(coll, val, n) {
