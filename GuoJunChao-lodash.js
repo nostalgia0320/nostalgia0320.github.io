@@ -269,20 +269,20 @@ var GuoJunChao = {
 		return result
 	},
 
-	// unzip: function() {
-	// 	var result = []
-	// 	for (i = 0, j = 0; i < arguments[i].length; i++) {
-	// 		result[i] = []
-	// 		for (j = 0; j < arguments.length; j++) {
-	// 			result[i][j] = arguments[j][i]
-	// 		}
-	// 	}
-	// 	return result
-	// },
+	unzip: function(arr) {
+		var result = []
+		for (i = 0; i < arr[0].length; i++) {
+			result[i] = []
+			for (j = 0; j < arr.length; j++) {
+				result[i][j] = arr[j][i]
+			}
+		}
+		return result
+	},
 
 	zip: function() {
 		var result = []
-		for (i = 0, j = 0; i < arguments[i].length; i++) {
+		for (i = 0, j = 0; i < arguments[0].length; i++) {
 			result[i] = []
 			for (j = 0; j < arguments.length; j++) {
 				result[i][j] = arguments[j][i]
@@ -681,18 +681,41 @@ var GuoJunChao = {
 	},
 
 	startCase: function(str) {
-		str = GuoJunChao.lowerCase(str)
 		var result = ''
-		var start = 1
-		result = result + str[0].toUpperCase()
-		for (i = 1; i < str.length; i++) {
-			if (str[i] == ' ') {
-				result = result + str.slice(start, i + 1)
-				result = result + str[i + 1].toUpperCase()
-				start = i + 2
+		var start = 0
+		var stop = 0
+		var x = 0
+		for (i = 0; i < str.length - 1; i++) {
+			if (str[i].search(/[a-z]/) == -1 && str[i].search(/[A-Z]/) == -1 && (str[i + 1].search(/[A-Z]/) != -1 || str[i + 1].search(/[a-z]/) != -1)) {
+				start = i + 1
+			}
+			if (str[i + 1].search(/[a-z]/) == -1 && str[i + 1].search(/[A-Z]/) == -1 && (str[i].search(/[A-Z]/) != -1 || str[i].search(/[a-z]/) != -1)) {
+				stop = i + 1
+				x++
+			}
+			if (stop > start) {
+				result = result + str.toUpperCase().slice(start, start + 1) + str.slice(start + 1, stop)
+				start = 0
+				stop = 0
 			}
 		}
-		return result + str.slice(start, str.length)
+		if (start != 0) {
+			stop = str.length
+			x++
+			result = result + str.toUpperCase().slice(start, start + 1) + str.slice(start + 1, stop)
+		}
+		if (x == 0 && start == 0 && stop == 0) {
+			result = str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
+		}
+		var res = ''
+		start = 0
+		for (i = 1; i < result.length - 1; i++) {
+			if ((result[i].search(/[A-Z]/) != -1 && result[i - 1].search(/[a-z]/) != -1) || (result[i].search(/[A-Z]/) != -1 && result[i + 1].search(/[a-z]/) != -1)) {
+				res = res + result.slice(start, i) + ' '
+				start = i
+			}
+		}
+		return res + result.slice(start, result.length)
 	},
 
 	includes: function(coll, val, n) {
@@ -772,6 +795,21 @@ var GuoJunChao = {
 			}
 		}
 		return num
+	},
+
+	differenceBy: function(arr_1, arr_2, ite) {
+		var result = []
+		for (i = 0; i < arr_1.length; i++) {
+			for (j = 0; j < arr_2.length; j++) {
+				if (ite(arr_1[i]) == ite(arr_2[j])) {
+					break
+				}
+			}
+			if (j == arr_2.length) {
+				result.push(arr_1[i])
+			}
+		}
+		return result
 	},
 
 
