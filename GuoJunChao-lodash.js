@@ -816,6 +816,231 @@ var GuoJunChao = {
 		return result
 	},
 
+	keys: function(obj) {
+		var result = []
+		for (key in obj) {
+			result.push(key)
+		}
+		return result
+	},
+
+	// forIn:function(obj,)
+
+	after: function(n, fun) {
+		var count = 0
+		return function(arg) {
+			count++
+			if (count >= n) {
+				return fun(arg)
+			}
+
+		}
+	},
+
+	before: function(n, func) {
+		var lastTime = 0
+		var lastEnter
+		return function() {
+			debugger
+			lastTime++
+			if (lastTime <= n) {
+				lastEnter = func.apply(null, arguments)
+				return lastEnter
+			} else {
+				return lastEnter
+			}
+		}
+	},
+
+	// arrayToLinkedList: function(arr) {
+	// 	var result = {
+	// 		next: null
+	// 	}
+	// 	for (i = arr.length - 1; i >= 0; i--) {
+	// 		var temp = result
+	// 		result = {
+	// 			value: arr[i]
+	// 		}
+	// 		result.next = temp
+	// 	}
+	// 	return result
+	// },
+
+	parseJson: function(str) {
+		var start = 1
+		var end = 1
+		var value
+		var i = 0
+		return parse()
+
+		function parse() {
+			var result = {}
+			var key = ""
+			if (str[i] == '{') {
+				for (i++; str[i - 1] != '}' && i < str.length; i++) {
+					if (str[i] === '"') {
+						start = i
+						end = str.slice(start + 1).indexOf('"')
+						key = str.slice(start + 1, start + end + 1)
+						i = start + end + 2
+					}
+					if (str[i] === ':') {
+						while (str[i] !== '"' && str[i] !== 't' && str[i] !== 'f' && str[i] !== 'n' && str[i] !== '[' && str[i] !== ']' && str[i] !== '{' && str[i].search(/[0-9]/) == -1) {
+							i++
+						}
+						switch (str[i]) {
+							case '"':
+								start = i
+								end = str.slice(start + 1).indexOf('\"')
+								value = str.slice(start + 1, start + end + 1)
+								result[key] = value
+								i = start + end + 1
+								break;
+
+							case 't':
+								result[key] = true
+								i += 4
+								break;
+
+							case 'f':
+								result[key] = false
+								i += 5
+								break;
+
+							case 'n':
+								result[key] = null
+								i += 4
+								break;
+
+							case '[':
+								result[key] = parseArray()
+								break;
+
+							case '{':
+								value = parse()
+								result[key] = value
+						}
+						if (str[i].search(/[0-9]/) != -1) {
+							start = i
+							while (str[i].search(/[0-9]/) != -1) {
+								i++
+							}
+							end = i
+							i--
+							value = +str.slice(start, end)
+							result[key] = value
+						}
+
+					}
+					if (str[i] == '}') {
+						return result;
+					}
+				}
+
+			} else {
+				for (; str[i] != '}' && i < str.length; i++) {
+					while (str[i] !== '"' && str[i] !== 't' && str[i] !== 'f' && str[i] !== 'n' && str[i] !== '[' && str[i] !== ']' && str[i] !== '{' && str[i].search(/[0-9]/) == -1) {
+						i++
+					}
+					switch (str[i]) {
+						case '"':
+							start = i
+							end = str.slice(start + 1).indexOf('\"')
+							value = str.slice(start + 1, start + end + 1)
+							result = value
+							i = start + end + 1
+							break;
+
+						case 't':
+							result = true
+							i += 4
+							break;
+
+						case 'f':
+							result = false
+							i += 5
+							break;
+
+						case 'n':
+							result = null
+							i += 4
+							break;
+
+						case '[':
+							return parseArray()
+							break;
+
+						case '{':
+							return parse()
+							break;
+					}
+					if (i < str.length) {
+						if (str[i].search(/[0-9]/) != -1) {
+							start = i
+							end = str.length
+							i--
+							value = +str.slice(start, end)
+							result = value
+							break
+						}
+					}
+				}
+			}
+
+
+			return result
+		}
+
+		function parseArray() {
+			var arr = []
+			for (i++; str[i] != ']'; i++) {
+				switch (str[i]) {
+					case '"':
+						start = i
+						end = str.slice(start + 1).indexOf('\"')
+						value = str.slice(start + 1, start + end + 1)
+						arr.push(value)
+						i = start + end + 1
+						break;
+
+					case 't':
+						arr.push(true)
+						i += 4
+						break;
+
+					case 'f':
+						arr.push(false)
+						i += 5
+						break;
+
+					case 'n':
+						arr.push(null)
+						i += 4
+						break;
+
+					case '[':
+						arr.push(parseArray())
+						break
+
+					case '{':
+						arr.push(parse())
+						break;
+				}
+				if (str[i].search(/[0-9]/) != -1) {
+					start = i
+					while (str[i].search(/[0-9]/) != -1) {
+						i++
+					}
+					end = i
+					i--
+					arr.push(+str.slice(start, end))
+				}
+			}
+			return arr
+
+		}
+	},
+
 
 
 }
