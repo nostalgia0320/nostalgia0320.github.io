@@ -1,3 +1,5 @@
+#简历
+
 ## 基础信息
 * 姓名：郭俊超
 * 年龄：25
@@ -11,43 +13,45 @@
 * 邮箱：1104300535@qq.com
 * Github：https://github.com/nostalgia0320/
 
-## 扎实的计算机基础与前端知识
+##前端基础
 
 * 通读《CSS 权威指南》与《Eloquent JavaScript》全本，《JavaScript高级程序设计》的部分章节，在读《Secrets of the JavaScript Ninja》、《jQuery 技术内幕》及《CSS揭秘》
-* 熟练掌握盒模型、行内格式化、块级格式化，浮动格式化，Flexbox 格式化上下文
+* 熟悉 HTML 语义化、熟练掌握常用的页面布局
+* 熟练掌握盒模型、行内格式化、块级格式化、浮动格式化及 Flexbox 格式化上下文
 * 熟悉 CSS3 渐变、动画、2d/3d 变幻等等特性
-* 熟练掌握 JS 的调试方式和技巧
+* 熟练使用 Chrome DevTools 调试工具与JS的调试技巧，能够快速定位并解决bug
 * 理解 JS 原型、闭包、高阶、异步、事件循环、并发、事件驱动等概念
 * 熟悉 ES6 包括不限于 ES6 的各种语法糖，新的类与对象，generator
 * 熟悉 DOM 原生 API，熟悉 jQuery API
 * 熟悉Vue，了解部分原理，掌握组件和路由
 * 了解 Angular 与 React
-* 模块化开发，打包部署上线等等
+* 了解 webpack 的使用且能进行模块化开发以及打包部署上线等
 * 了解SVG与D3，能够用D3绘制出简单的图表及布局，熟悉 Snap.svg
-  
-* 实现了简单的jsbin/markdown编辑器
-* 熟悉常见数据结构和算法，了解树、图的遍历，略懂图的遍历、简单算法及动态规划等算法
+* 了解 Node 的基本原理以及模块机制且了解基础模块的使用
+
 * 实现了 Lodash 一半以上的函数，Github
+* 实现了简单的 sizzle.js，Github
 * 实现了一个基础的 JSON Parser，Github
 * 实现了 ToDoList （原生JS），Github
+* 实现了简单的jsbin/markdown编辑器，Github
 
-* 略懂 HTTP 协议，看过 RFC 2616
+##计算机基础
   
+* 熟悉常见数据结构和算法，了解树、图的遍历，略懂图的遍历、简单算法及动态规划等算法
+* 略懂 HTTP 协议，看过 RFC 2616
 * 了解基础的编码知识如base64，utf8，浮点数等的表示等
 * 了解计算机网络的基本原理，dns，tcp，端口
 * 了解数据库系统及SQL查询语言的使用，理解数据系统的各个概念
   
 
-## Node
+## 项目经历
 
-* 了解 Node 的基本原理
-* 了解 Node 的模块机制
-* 了解 http、fs、path 等模块的使用，能够独立实现文件服务器
-* 了解 Node中Buffer，Stream等用法
+* 计算器（支持高精度计算），Github
+* helloWord（背单词软件），Github
 
-## 其它
+## 关于我
 
 * 数学基础较好
-* 可正常阅读阅读原文档
-* 了解前端工程化与前端性能优化
+* 可流畅阅读原文档
+* 喜欢去解决有挑战的任务
 
