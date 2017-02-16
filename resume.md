@@ -29,6 +29,7 @@
 * 熟悉常见数据结构和算法，了解树、图的遍历，略懂图的遍历、简单算法及动态规划等算法
 * 实现了 Lodash 一半以上的函数，Github
 * 实现了一个基础的 JSON Parser，Github
+* 实现了 ToDoList （原生JS），Github
 
 * 略懂 HTTP 协议，看过 RFC 2616
   
