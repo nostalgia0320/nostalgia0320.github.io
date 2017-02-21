@@ -10,7 +10,7 @@
 * 英语：CET-4
 * 电话：13482624111
 * QQ：1104300535
-* 邮箱：1104300535@qq.com
+* 邮箱：codergjc@gmail.com
 * Github：https://github.com/nostalgia0320/
 
 ##前端基础
