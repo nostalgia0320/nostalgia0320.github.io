@@ -803,14 +803,43 @@ var GuoJunChao = {
 
 	differenceBy: function(arr_1, arr_2, ite) {
 		var result = []
-		for (i = 0; i < arr_1.length; i++) {
-			for (j = 0; j < arr_2.length; j++) {
-				if (ite(arr_1[i]) == ite(arr_2[j])) {
+		if (typeof ite == 'function') {
+			for (i = 0; i < arr_1.length; i++) {
+				for (j = 0; j < arr_2.length; j++) {
+					if (ite(arr_1[i]) == ite(arr_2[j])) {
+						break
+					}
+				}
+				if (j == arr_2.length) {
+					result.push(arr_1[i])
+				}
+			}
+			return result
+		} else {
+			for (i = 0; i < arr_1.length; i++) {
+				for (j = 0; j < arr_2.length; j++) {
+					if (arr_1[i][ite] == arr_2[j][ite]) {
+						break
+					}
+				}
+				if (j == arr_2.length) {
+					result.push(arr_1[i])
+				}
+			}
+			return result
+		}
+
+	},
+
+	differenceWith: function(array, values, comp) {
+		for (i = 0; i < array.length; i++) {
+			for (j = 0; j < values.length; j++) {
+				if (array[i][ite] == values[j][ite]) {
 					break
 				}
 			}
-			if (j == arr_2.length) {
-				result.push(arr_1[i])
+			if (j == values.length) {
+				result.push(array[i])
 			}
 		}
 		return result
@@ -852,19 +881,21 @@ var GuoJunChao = {
 		}
 	},
 
-	// arrayToLinkedList: function(arr) {
-	// 	var result = {
-	// 		next: null
-	// 	}
-	// 	for (i = arr.length - 1; i >= 0; i--) {
-	// 		var temp = result
-	// 		result = {
-	// 			value: arr[i]
-	// 		}
-	// 		result.next = temp
-	// 	}
-	// 	return result
-	// },
+	arrayToLinkedList: function(arr) {
+		var result = {
+			next: null
+		}
+		for (i = arr.length - 1; i >= 0; i--) {
+			var temp = result
+			result = {
+				value: arr[i]
+			}
+			result.next = temp
+		}
+		return {
+			next: result
+		}
+	},
 
 	parseJson: function(str) {
 		var start = 1
