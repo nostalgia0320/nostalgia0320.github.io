@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简历·郭俊超</title>
+	<link rel="stylesheet" href="Clearness.css">
+</head>
+<body>
+	
+</body>
+<script src="markdown.js"></script>
+<script src="jquery.min.js"></script>
+<script>
+  $(function(){
+    var data = $.get("https://nostalgia0320.github.io/resume.md",function(data){
+    mdHtml = marked(data)
+   var div =  document.createElement("div")
+   $(div).attr("class","box").appendTo("body")
+    $(".box").append(mdHtml)
+    })
+  })
+</script>
+</html>
