@@ -1,4 +1,4 @@
-#简历
+# 简历
 
 ## 基础信息
 * 姓名：郭俊超
@@ -10,10 +10,10 @@
 * 英语：CET-4
 * 电话：13482624111
 * QQ：1104300535
-* 邮箱：1104300535@qq.com
+* 邮箱：codergjc@gmail.com
 * Github：https://github.com/nostalgia0320/
 
-##前端基础
+## 前端基础
 
 * 通读《CSS 权威指南》与《Eloquent JavaScript》全本，《JavaScript高级程序设计》的部分章节，在读《Secrets of the JavaScript Ninja》、《jQuery 技术内幕》及《CSS揭秘》
 * 熟悉 HTML 语义化、熟练掌握常用的页面布局的实现方式
@@ -36,7 +36,7 @@
 
 ##计算机基础
   
-* 熟悉常见数据结构和算法，了解树的遍历及相关算法，略懂图的遍历、简单搜索及动态规划等算法
+* 熟悉常见数据结构和算法，了解树、图的遍历，略懂图的遍历、简单搜索及动态规划等算法
 * 略懂 HTTP 协议，大致浏览过 RFC 2616
 * 了解基础的编码知识如 Base64，UTF-8，浮点数等的表示等
 * 了解计算机网络的基本原理，dns，tcp
@@ -46,7 +46,7 @@
 ## 项目经历
 
 * 计算器（支持高精度计算），Github
-* helloWord（背单词软件），Github
+* helloWord（背单词），Github
 
 ## 关于我
 
