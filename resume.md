@@ -32,7 +32,6 @@
 * 实现了简单的 sizzle.js，Github
 * 实现了一个基础的 JSON Parser，Github
 * 实现了 ToDoList （原生JS），Github
-* 实现了简单的jsbin/markdown编辑器，Github
 
 ## 计算机基础
   
