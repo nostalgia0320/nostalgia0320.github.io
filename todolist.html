@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Todolist</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			color: #4d4d4d;
+		}
+		body{
+			font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			background-color: #f5f5f5;
+		}
+		#top{
+			width: 550px;
+			height: 75px;
+			margin: 6px auto;
+		}
+		#top>h1{
+			font-size: 100px;
+			color: rgba(175, 47, 47, 0.15);
+			text-align: center;
+			font-weight: 100;
+			text-rendering: optimizeLegibility;
+		}
+		.main{
+			width: 550px;
+			height: 65px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+		    margin: 42px auto 0 auto;
+		    background-color: white;
+		    position: relative;
+		}
+		.list{
+			width: 550px;
+			height: 60px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+			border-top: 1px solid #e6e6e6;
+		    background-color: white;
+		    position: relative;
+		}
+		#checkbox{
+			-webkit-appearance: none;
+			width: 45px;
+			height: 62.75px;
+			transform: rotate(90deg);
+			outline: none;
+			color: #e6e6e6;
+		}
+		#checkbox::before {
+		    content: '❯';
+		    font-size: 22px;
+		    /*color: #e6e6e6;*/
+		    padding: 10px 27px 10px 27px;
+		    position: absolute;
+		    top: 2px;
+		    right: -11px;
+		}
+		#checkbox~label{
+			width: 44px;
+			height: 65px;
+		}
+		.main input[type=text] {
+	        height: 33px;
+	        width: 471px;
+	        float: right;
+	        padding: 16px;
+	        outline: none;
+	        border: none;
+	        font-size: 24px;
+	    }
+	    .list input[type=text] {
+	        height: 26px;
+	        width: 471px;
+	        float: right;
+	        padding: 16px;
+	        outline: none;
+	        border: none;
+	        font-size: 24px;
+	        transition: color .2s;
+	        display: block;
+	        /*box-sizing:border-box;*/
+	    }
+	    input::-webkit-input-placeholder{
+	    	color:#e6e6e6;
+	    	font-style: italic;
+	    }
+	    #content{
+	    	width: 550px;
+	    	margin: 0 auto;
+	    	background-color: white;
+	    }
+	    .circle{
+	    	width: 40px;
+	    	height: 40px;
+	    	border-radius: 40px;
+	    	margin-top: 9px;
+	    	opacity: 0;
+	    	z-index: 9;
+	    	position: absolute;
+	    }
+	    .list::after{
+	    	content: '';
+	    	position: absolute;
+	    	width: 30px;
+	    	height: 30px;
+	    	border-radius: 30px;
+			border:1px solid #ededed;
+			display: inline-block;
+			left: 10px;
+			top: 12px;
+			z-index: 2;
+		}
+		.list label::after{
+			position: absolute;
+			content: '✓';
+			color:#5dc2af;
+			font-size: 26px;
+			left: 16px;
+			top: 8px;
+			font-family:  'Trebuchet';
+			display: none;
+			z-index: 3;
+			/*width: 40px;
+			height: 40px;*/
+		}
+		.list input:checked + label::after{
+			display: block;
+		}
+		.list input:checked ~ input[type=text]{
+			text-decoration:line-through;
+			color: #d9d9d9;
+		}
+		.list button{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			right: 11px;
+			top: 9px;
+			color: #cc9a9a;
+			font-size: 30px;
+			background-color: transparent;
+			border:none;
+			display: none;
+			outline: none;
+		}
+		.list button:hover{
+			color: #af5b5e;
+		}
+		.list:hover button{
+			display: block;
+		}
+		footer{
+			width: 550px;
+			margin: 0 auto;
+			position: relative;
+			display: none;
+		}
+		footer > div{
+			width: 550px;
+			height: 42px;
+			line-height: 42px;
+			border-top: 1px solid #e6e6e6; 
+			background-color: white;
+			position: absolute;
+			color: #777;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+		}
+		footer > div ul{
+			display: inline-block;
+			width: 224px;
+			height: 42px;
+			line-height: 42px;
+			vertical-align: top;
+		}
+		footer > div ul li{
+			float: left;
+			height: 24px;
+			width: auto;
+			margin:6px 12px 6px 0;
+			padding: 0 7px;
+			line-height: 24px;
+			border: 1px solid transparent;
+			vertical-align: baseline;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		footer > div ul li:hover{
+			border-color: #f7eaea;
+		}
+		footer > div span{
+			width: 164px;
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 18px;
+			right: 16px;
+		}
+		#clear{
+			width: 104px;
+			height: 20px;
+			background-color: transparent;
+			border: none;
+			outline: none;
+			position: absolute;
+			right: 18px;
+			top: 9px;
+			color: #777;
+			font-size: 14px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<section id='top'>
+		<h1>todos</h1>
+	</section>
+	<section class='main'>
+		<input id="checkbox" type="checkbox" onclick='comAll()'>
+        <label for="checkbox"></label>
+        <input id="write" type="text" placeholder="What needs to be done?">
+	</section>
+	<section id='content'></section>
+	<footer>
+		<div>
+			<span></span>
+			<ul>
+				<li onclick='alll()'>All</li>
+				<li onclick='active()'>Active</li>
+				<li onclick='complete()'>Completed</li>
+			</ul>
+			<button id='clear' onclick='clearCom()'>Clear completed</button>
+		</div>
+	</footer>
+
+	<script>
+		document.getElementsByTagName('li')[0].style.border='1px solid #efd5d5'
+		document.getElementById('checkbox').style.display='none'
+		var input=document.getElementById('write')
+		input.onkeydown=function(e){
+			if(e.keyCode == 13 && input.value.trim()!=''){
+				document.getElementById('checkbox').style.color='#e6e6e6'
+				var div=document.createElement('div')
+				div.className='list'
+				div.innerHTML=`
+				<input class="circle" type="checkbox" onclick='itemCount(this)' >
+		        <label for="checkbox"></label>
+		        <input type="text" value='${input.value}' readonly="true">
+		        <button onclick='del(this.parentNode)'>×</button>
+				`
+				document.getElementById('content').appendChild(div)
+				input.value=''
+
+
+				var lists=document.querySelectorAll('.list')
+				var x=lists.length
+				dbl(lists,x)
+				blur(lists,x)
+				function dbl(a,b){
+					a[b-1].getElementsByTagName('input')[1].ondblclick=function(){
+						a[b-1].getElementsByTagName('input')[1].readOnly=false
+						a[b-1].getElementsByTagName('input')[1].style.outline='invert'
+						a[b-1].getElementsByTagName('input')[1].style.border='1px solid #999'
+						a[b-1].getElementsByTagName('input')[1].onkeydown=function(e){
+							if(e.keyCode == 13 && a[b-1].getElementsByTagName('input')[1].value.trim()!=''){
+								a[b-1].getElementsByTagName('input')[1].style.outline='none'
+								a[b-1].getElementsByTagName('input')[1].style.border='none'
+								a[b-1].getElementsByTagName('input')[1].readOnly=true
+								if(a[b-1].getElementsByTagName('input')[1].value.trim()==''){
+									del(a[b-1])
+								}
+							}
+						}
+					}
+
+				
+				}
+
+				function blur(a,b){
+					a[b-1].getElementsByTagName('input')[1].onblur=function(){
+						a[b-1].getElementsByTagName('input')[1].style.outline='none'
+						a[b-1].getElementsByTagName('input')[1].style.border='none'
+						a[b-1].getElementsByTagName('input')[1].readOnly=true
+						if(a[b-1].getElementsByTagName('input')[1].value.trim()==''){
+							del(a[b-1])
+						}
+					}
+
+				}
+				footerDisplay()
+				itemCount()
+
+				if(document.getElementsByTagName('li')[2].style.borderColor!=''){
+					lists[lists.length-1].style.display='none'
+				}
+			}
+		}
+
+		function del(q){
+			q.remove()
+			footerDisplay()
+			itemCount()
+			
+
+		}
+
+		function footerDisplay(){
+			var l=document.getElementsByClassName('list').length
+			if(l==0){
+				document.getElementsByTagName('footer')[0].style.display='none'
+				document.getElementById('checkbox').style.display='none'
+			}
+			else {
+				document.getElementsByTagName('footer')[0].style.display='block'
+				document.getElementById('checkbox').style.display=''
+			}
+		}
+
+		function itemCount(q){
+			document.getElementById('checkbox').style.color='#e6e6e6'
+			var count=document.getElementsByClassName('list')
+			x=count.length
+			for(i=0;i<count.length;i++){
+				if(count[i].getElementsByTagName('input')[0].checked==true){
+					x--
+					document.getElementById('clear').style.display='block'
+				}
+			}
+			var i='item'
+			if(x==0){
+				document.getElementById('checkbox').style.color='#737373'
+			}
+			if(x!=1){
+				i='items'
+			}
+			if(x==count.length){
+				document.getElementById('clear').style.display='none'
+			}
+			document.getElementsByTagName('span')[0].innerHTML=`${x} ${i} left`
+			if(q){
+			if(document.getElementsByTagName('li')[1].style.border!=''&&q.checked==true){
+				q.parentNode.style.display='none'
+			}else if(document.getElementsByTagName('li')[2].style.border!=''&&q.checked==false){
+				q.parentNode.style.display='none'
+			}else if(q){
+				q.parentNode.style.display='block'
+			}
+		}
+		}
+
+		function alll(){
+			var count=document.getElementsByClassName('list')
+			for(i=0;i<count.length;i++){
+				count[i].style.display='block'
+			}
+			document.getElementsByTagName('li')[0].style.border='1px solid #efd5d5'
+			document.getElementsByTagName('li')[1].style.border=''
+			document.getElementsByTagName('li')[2].style.border=''
+		}
+
+		function active(){
+			var count=document.getElementsByClassName('list')
+			for(i=0;i<count.length;i++){
+				if(count[i].getElementsByTagName('input')[0].checked==true){
+					count[i].style.display='none'
+				}else {
+					count[i].style.display='block'
+				}
+			}
+			document.getElementsByTagName('li')[1].style.border='1px solid #efd5d5'
+			document.getElementsByTagName('li')[0].style.border=''
+			document.getElementsByTagName('li')[2].style.border=''
+		}
+		function complete(){
+			var count=document.getElementsByClassName('list')
+			for(i=0;i<count.length;i++){
+				if(count[i].getElementsByTagName('input')[0].checked==false){
+					count[i].style.display='none'
+				}else {
+					count[i].style.display='block'
+				}
+			}
+			document.getElementsByTagName('li')[2].style.border='1px solid #efd5d5'
+			document.getElementsByTagName('li')[0].style.border=''
+			document.getElementsByTagName('li')[1].style.border=''
+		}
+
+		function clearCom(){
+			var count=document.querySelectorAll('.list')
+			for(i=0;i<count.length;i++){
+				if(count[i].getElementsByTagName('input')[0].checked==true){
+					del(count[i])
+				}
+			}
+		}
+
+		function comAll(){
+			var count=document.getElementsByClassName('list')
+			if(x==0){
+				for(i=0;i<count.length;i++){
+					count[i].getElementsByTagName('input')[0].checked=false
+					itemCount(count[i].getElementsByTagName('input')[0])
+				}
+			}else {
+				for(i=0;i<count.length;i++){
+					count[i].getElementsByTagName('input')[0].checked=true
+					itemCount(count[i].getElementsByTagName('input')[0])
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>
