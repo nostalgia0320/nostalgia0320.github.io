@@ -14,18 +14,31 @@
 
 ## 前端基础
 
-* 通读《CSS 权威指南》与《Eloquent JavaScript》全本，《JavaScript高级程序设计》的部分章节，在读《Secrets of the JavaScript Ninja》、《jQuery 技术内幕》及《CSS揭秘》
+### CSS
+
+* **通读《CSS 权威指南》**，在读《CSS揭秘》
 * 熟悉 HTML 语义化、熟练掌握常用的页面布局的实现方式
 * 熟练掌握盒模型、行内格式化、块级格式化、浮动格式化及 Flexbox 格式化上下文
 * 熟悉 CSS3 渐变、动画、2d/3d 变幻等等新特性
+* 了解 Less / Sass 等 CSS 预处理工具
+
+### JavaScript
+
+* **通读《Eloquent JavaScript》，《JavaScript高级程序设计》的部分章节，在读《Secrets of the JavaScript Ninja》**
 * 熟练使用 Chrome DevTools 调试工具与JS的调试技巧，能够快速定位并解决bug
-* 理解 JS 原型、闭包、高阶、异步、事件循环等概念
+* **深入理解 JS 原型、闭包、异步、高阶函数等概念**
 * 熟悉 ES6 包括不限于 ES6 的各种语法糖，新的类与对象，generator
 * 熟悉 DOM 原生 API，熟悉 jQuery API
 * 熟悉Vue，了解部分原理，掌握组件和路由
 * 了解 webpack 的使用且能进行模块化开发以及打包部署上线等
 * 了解SVG与D3，能够用D3绘制出简单的图表及布局，熟悉 Snap.svg
-* 了解 Node 的基本原理以及模块机制且了解基础模块的使用
+
+### Node
+
+* 了解 Node 的基本原理及其模块机制
+* 熟悉常用模块的使用
+* 了解 Express 应用框架
+* 使用 Node 原生模块结合 Sqlite3 实现前后端网站开发
 
 
 ## 计算机基础
@@ -33,7 +46,12 @@
 * 熟悉常见数据结构和算法，了解树的遍历及相关算法
 * 了解计算机网络的基本原理， Http 机制，大致浏览过 RFC 2616
 * 了解基础的编码知识如 Base64，UTF-8等
-* 了解数据库系统及SQL查询语言的使用，理解数据系统的各个概念
+
+## 其他
+
+* 了解前端工程化，了解前端性能优化
+* 了解 Git 常用命令并能使用 Git 进行版本管理
+* 了解数据库系统及 SQL 查询语言的使用，理解数据库系统的各个概念
 
   
 ## 实践项目
