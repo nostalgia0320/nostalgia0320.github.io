@@ -8,7 +8,7 @@
 * 学校：上海海事大学
 * 专业：交通工程
 * 电话：13482624111
-* QQ：1104300535
+* QQ：  1104300535
 * 邮箱：codergjc@gmail.com
 * [GitHub](https://github.com/nostalgia0320)
 
