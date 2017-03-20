@@ -60,7 +60,6 @@
 * 实现了简单的 sizzle.js，[Github]()
 * 实现了一个基础的 JSON Parser，[Github](https://github.com/nostalgia0320/JSON-Parser)
 * 实现了 ToDoList （原生JS,推荐chrome浏览器打开），[Github](https://nostalgia0320.github.io/todolist.html)
-* 实现了 中国象棋 （原生JS,推荐chrome浏览器打开），[Github](http://nostalgia0320.coding.me/homework/c/chess.html)
 
 
 
